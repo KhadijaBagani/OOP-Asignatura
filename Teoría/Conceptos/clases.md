@@ -2,12 +2,13 @@
 
 - [Clases](#clases)
   - [Clase vs Instancia/Objeto](#clase-vs-instanciaobjeto)
-  - [Componentes](#componentes)
+  - [Partes de una Clase](#partes-de-una-clase)
     - [Campos](#campos)
     - [Métodos](#métodos)
   - [This](#this)
     - [Usos](#usos)
   - [Constructores](#constructores)
+    - [Usos de los Constructores](#usos-de-los-constructores)
 
 
 
@@ -26,7 +27,7 @@ clase Ejemplo{ //No es un objeto
 new Ejemplo(); //Crea un objeto (instancia de Ejemplo)
 ```
 
-## Componentes
+## Partes de una Clase
 
 Tal y como podéis ver en la teoría, las clases y los objetos surgieron para permitirnos tener elementos en el código que **ejecutan acciones** a la vez que **almacenan datos**.
 
@@ -144,5 +145,96 @@ new Tonto(this);
 
 ## Constructores
 
-> [!warning]
-> Esta parte será expandida en el futuro
+Son métodos especiales que se usan para instanciar clases. Necesitan la keyword `new` para ser invocados.
+
+```cs
+class Example{
+
+  //Constructor simple (no recibe nada y no hace nada)
+  public Example(){
+
+  }
+}
+
+...
+
+new Example(); //Llama al constructor que hemos declarado
+```
+
+Cada clase puede tener tantos constructores como quiera mientras no entren en **conflicto**.
+
+```cs
+
+class Example{
+
+  //Los dos constructores tienen los mismos tipos de parámetros
+  //No puede distinguirlos
+  public Example(int num){
+
+  }
+
+  public Example(int valor){
+
+  }
+}
+...
+
+new Example(1); //No sabe qué constructor usar
+
+```
+
+### Usos de los Constructores
+
+Nos permiten especificar los datos que necesita un objeto para poder ser creado y hacer que ocurra algo concreto cuando lo creamos.
+
+Por ejemplo: cada vez que instanciemos la siguiente clase se escribirá "Hola a todos!" en la consola.
+
+```cs
+class Saludador{
+
+  //Constructor simple (no recibe nada y no hace nada)
+  public Saludador(){
+    Console.Write("Hola a todos!"); 
+  }
+}
+```
+
+El siguiente hace lo mismo pero exige que le especifiques un saludo concreto para poder crearlo.
+
+```cs
+class Saludador{
+
+  //Constructor simple (no recibe nada y no hace nada)
+  public Saludador(string saludo){
+    Console.Write(saludo+" a todos!"); 
+  }
+}
+
+...
+
+new Saludador(); //Dará error porque no se especifica saludo
+new Saludador("Hola"); //Mostrará "Hola a todos"
+new Saludador(""); //También funciona y mostrará " a todos"
+new Saludador(null); //Lo mismo con null
+```
+
+Dicho esto, el uso típico es para inicializar valores
+
+```cs
+class Coordenada{
+  public int x;
+  public int y;
+  
+  public Coordenada(int x, int y){
+    //Asigna los parámetros recibidos a los campos
+    this.x = x;
+    this.y = y;
+  }
+}
+
+...
+
+var position = new Coordenadas(10,25);
+Console.Write(position.y); //El valor de "y" es 25
+
+```
