@@ -1,15 +1,13 @@
 # Clases
 
-- [Clases](#clases)
-  - [Clase vs Instancia/Objeto](#clase-vs-instanciaobjeto)
-  - [Partes de una Clase](#partes-de-una-clase)
-    - [Campos](#campos)
-    - [Métodos](#métodos)
-  - [This](#this)
-    - [Usos](#usos)
-  - [Constructores](#constructores)
-    - [Usos de los Constructores](#usos-de-los-constructores)
-
+- [Clase vs Instancia/Objeto](#clase-vs-instanciaobjeto)
+- [Partes de una Clase](#partes-de-una-clase)
+  - [Campos](#campos)
+  - [Métodos](#métodos)
+- [This](#this)
+  - [Usos](#usos)
+- [Constructores](#constructores)
+  - [Usos de los Constructores](#usos-de-los-constructores)
 
 
 ## Clase vs Instancia/Objeto
