@@ -16,9 +16,6 @@
   - [Continue](#continue)
   - [Goto](#goto)
 
-
-
-
 Las instrucciones de control de flujo nos permiten controlar que instrucciones se ejecutan y en qué orden. La universalmente conocida es el típico "if ... else ...", pero en C# hay mucho más.
 
 ## Condicionales
@@ -36,7 +33,6 @@ Presente en casi todos los lenguajes y bastante intuitiva. Dicho esto, el if en 
 - El interior del if cuenta como **su propio ámbito** (scope), por lo que las **variables locales** que declareis dentro **no se podrán usar fuera**.
 
 Ejemplos:
-
 
 ```cs
 if (condition)
@@ -77,7 +73,7 @@ Console.WriteLine($"Coche: {coche.model}");
 
 > [!Note]
 > El uso que acabais de ver de el operador **`is`** es algo conocido como **Pattern Matching** (coincidencia de patrones) que permite comprobar si un objeto es de un tipo concreto (o compatible) y tratarlo como tal.
-> 
+>
 > Se explica en mayor detalle en el apartado [Pattern Matching](#pattern-matching) de la instrucción **Switch**
 
 ### Cadenas de Ifs
@@ -93,6 +89,7 @@ if(value < 0){
     Console.WriteLine("Is Zero"); 
 }
 ```
+
 Realmente, esto es lo mismo que ↓
 
 ```cs
@@ -245,11 +242,10 @@ switch (v) {
 
 No solo es una forma elegante y legible de representar lo que hacemos con cada subclase, sino que además es muy fácil expandirlo en el futuro y/o escribir un default que te avise o produzca un error si se encuenta algo que no sabe gestionar.
 
-El Pattern Matching es complejo pero muy potente, si quereis más información mirad estos recursos: 
+El Pattern Matching es complejo pero muy potente, si quereis más información mirad estos recursos:
 
 - [Fundamentos Pattern Matching](https://www.campusmvp.es/recursos/post/lenguaje-csharp-coincidencia-de-modelos-parte-1-fundamentos.aspx)
 - [Switch con expresiones](https://www.campusmvp.es/recursos/post/lenguaje-csharp-coincidencia-de-modelos-parte-2-uso-de-expresiones-en-el-switch.aspx)
-
 
 ## Bucles
 
@@ -319,6 +315,7 @@ Se puede hacer bastante más con un bucle for, pero este es su uso más frecuent
 while(true){} //Diversión sin fin para todos 
 // (te puede colgar el PC)
 ```
+
 Como el ejemplo anterior ilustra, `while` (y su variante `do while`) es el tipo de bucle con mayor potencial destructivo.
 
 El motivo es simple: no tiene ningún tipo de protección contra bucles infinitos. Simplemente acepta una condición y ejecuta el código continuamente hasta que esta sea `false`.
@@ -336,6 +333,7 @@ while(!isConnected){
 Si por algún motivo `TryToConnect` no puede tener éxito (no hay internet, está mal programada, etc.) el programa simplemente se quedará en bucle para siempre y ni siquiera dará error.
 
 Por eso es mejor poner un límite a los bucles, aunque sea una cantidad absurda de número de intentos.
+
 ```cs
 /* 100 intentos */
 bool isConnected = TryToConnect();
