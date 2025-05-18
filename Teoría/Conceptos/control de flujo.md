@@ -12,6 +12,9 @@
   - [While](#while)
   - [Do While](#do-while)
 - [Saltos](#saltos)
+  - [Break](#break)
+  - [Continue](#continue)
+  - [Goto](#goto)
 
 
 
@@ -178,15 +181,19 @@ switch (num) {
 
 Vale, el `case` es muy claro, le estás diciendo "si el valor es este, haz lo siguiente" y el `default` es obviamente una especie de else, ¿pero y el `break`? ¿Porqué da **error** si no lo pongo pero no siempre?
 
-En realidad es más simple de lo que parece: el break le dice cuando parar. Y si no lo pones, simplemente continua.
+En realidad es más simple de lo que parece: el break le dice cuando acaba el case y, para evitar que te lo dejes, te avisará si no lo pones salvo en las siguientes excepciones
 
 ```cs
 switch (num) {
-    case 0: /*Se ejecuta si es 0*/   
-    case 1: /*Se ejecuta si es 1 o 0 */ 
+    case 0: //No hace falta si no pones código
+    case 1: // Se ejecuta si es 0 o 1
         break;
-    default: /*Se ejecuta si no es ninguno de los anteriores*/ 
-        break;
+    case 2:
+        return; //También vale salir del método
+    case 3:
+        goto case 2; //O saltar a otro case
+    default: 
+        throw new Exception("Oops"); //O dar un error
 }
 ```
 
@@ -194,10 +201,17 @@ De esta forma puedes hacer que lo que se hace en case se aplique también a otro
 
 ```cs
 switch (num) {
-    default: /*Se ejecuta siempre que no es 0 o 1*/ 
-    case 0: /*Se ejecuta siempre que no sea 1*/ 
-    case 1: /*Se ejecuta siempre*/ 
-        break; //El único break obligatorio es el del final
+    case 0: /*Se ejecuta siempre que no sea 1 o 2*/
+        Console.WriteLine("0");
+        goto case 1;
+    case 2:
+    case 1: /*Se ejecuta siempre*/
+        Console.WriteLine("1");
+        break;
+    default: /*Se ejecuta siempre que no es 0, 1 o 2*/ 
+        Console.WriteLine("default");
+        goto case 0;
+    
 }
 ```
 
@@ -249,13 +263,55 @@ Debido a esto, vamos a empezar por los bucles más intuitivos e ir bajando de ni
 
 ### Foreach
 
-> [!warning]
-> Esta parte será expandida en el futuro
+`foreach` es el bucle más intuitivo porque parte de la idea **repetir** una serie de **acciones** sobre un **conjunto de valores**.
+
+```cs
+foreach (var element in collection) {
+    //Hacer algo con el elemento                
+}
+```
+
+En realidad su funcionamiento interno es algo más complejo, ya que en realidad lo que hace es en cada bucle pedirle a la colección que le pase el siguiente elemento hasta que que haya terminado, pero esto no es relevante a no ser que queramos hacer que una de nuestras clases sea **"iterable"**. Pero eso lo veremos más adelante.
 
 ### For
 
-> [!warning]
-> Esta parte será expandida en el futuro
+El bucle `for` tiene una sintaxis que asusta un poco, pero es casi tan simple como `foreach`. Veamos un ejemplo:
+
+```cs
+//Contar del 0 al 9
+for(int i=0; i<10; i++) {
+    Console.WriteLine(i);
+}
+```
+
+A diferencia del `foreach`, el bucle for se basa en una condición para decidir si parar o no, pero no resulta inmediatamente obvio porque esta está definida en tres partes separadas por `;`
+
+La estructura en realidad es sencilla:
+
+```cs
+for(/*Valor de inicio*/;/*condición*/;/*valor siguiente*/){
+    /*Acciones a repetir*/
+}
+```
+
+1. Asigna el **valor inicial** para el bucle.
+2. Comprueba que se cumple la **condición**.
+   1. Se detiene en bucle si no.
+3. Ejecuta las **acciones** del bucle.
+4. Calcula el **valor siguiente**.
+5. Vuelve al paso 2
+
+El `for` de ejemplo anterior básicamente dice: empieza desde el 0 (`int i=0`) y continua sumando 1 (`i++`) mientras el valor siga siendo menor a 10 (`i<10`).
+
+De hecho, no está limitado a solo una variable:
+
+```cs
+for(int i=0, j=5; i<10 && j<20; j++, i+=2) {
+    Console.WriteLine($"{i}{j}");
+}
+```
+
+Se puede hacer bastante más con un bucle for, pero este es su uso más frecuente.
 
 ### While
 
@@ -265,19 +321,98 @@ while(true){} //Diversión sin fin para todos
 ```
 Como el ejemplo anterior ilustra, `while` (y su variante `do while`) es el tipo de bucle con mayor potencial destructivo.
 
-El motivo es simple: no tiene ningún tipo de protección contra bucles infinitos. Simplemente acepta una condición y ejecuta el código continuamente hasta que esta sea false.
+El motivo es simple: no tiene ningún tipo de protección contra bucles infinitos. Simplemente acepta una condición y ejecuta el código continuamente hasta que esta sea `false`.
 
+**No useis nunca `while`** si teneis alternativa. De hecho, a veces puede ser mejor usar un bucle **for** aunque no esteis iterando. Imaginemos por ejemplo un bucle que sirve para reintentar la conexión si no se consigue a la primera:
 
+```cs
+bool isConnected = TryToConnect();
 
-> [!warning]
-> Esta parte será expandida en el futuro
+while(!isConnected){
+    isConnected = TryToConnect();
+}
+```
+
+Si por algún motivo `TryToConnect` no puede tener éxito (no hay internet, está mal programada, etc.) el programa simplemente se quedará en bucle para siempre y ni siquiera dará error.
+
+Por eso es mejor poner un límite a los bucles, aunque sea una cantidad absurda de número de intentos.
+```cs
+/* 100 intentos */
+bool isConnected = TryToConnect();
+for (int i=100; !isConnected && i>0; i--) {
+     isConnected = TryToConnect();           
+}
+//Si aun así no conecta, lanzar un error
+if(!isConnected)
+    throw new Exception("Connection failed");
+```
+
+La única excepción aceptable es si tienes la absoluta certeza de que es matemáticamente imposible que el bucle no termine en un tiempo razonable.
 
 ### Do While
 
-> [!warning]
-> Esta parte será expandida en el futuro
+`do while` es una variante del bucle while y casi que una reliquia del pasado. No todos los lenguajes lo tienen y ni siquiera ofrece ninguna funcionalidad única, solo una forma mejor de escribir lo mismo.
+
+```cs
+bool isConnected;
+do{
+    isConnected = TryToConnect();
+}while(!isConnected)
+```
+
+A primera vista parece un while que tiene la condición **después de la ejecución**. Y lo es, pero en cuanto piensas un poco te das cuenta que eso es lo mismo que duplicar el contenido de un while y ponerlo delante.
+
+```cs
+bool isConnected;
+//Primer "loop"
+isConnected = TryToConnect();
+while(!isConnected){
+    //Loops sucesivos
+    isConnected = TryToConnect();
+}
+```
+
+No es que `do while` sea inutil, pero no ofrece demasiados beneficios por encima de un `while` y menos aún para justificar usarlo en vez de un `for`.
+
+No os compliqueis la vida, **usad otro tipo de bucle**.
 
 ## Saltos
 
-> [!warning]
-> Esta parte será expandida en el futuro
+### Break
+
+Tiene distinto significado según dónde se use. Mirar [bucles](#bucles) y [switch](#switch) para más detalles.
+
+### Continue
+
+Salta a la siguiente iteración del bucle
+
+```cs
+foreach (Vehicle v in lista) {
+    if(v is Car)
+        continue; //Saltarse ese vehículo
+    Console.WriteLine($"{v} no es un coche");
+}
+
+```
+
+### Goto
+
+Permite **saltar** a cualquier otra instrucción del **método actual**. Se recomienda evitar usarla a toda costa salvo en dos casos:
+
+- Para **salir de dos bucles** a la vez (break solo sale de uno)
+- Para saltar entre cases en un `switch` (ver [Sintaxis del Switch](#sintaxis-switch)).
+
+```cs
+/*Bucle*/
+bool compartenValor = false;
+foreach(var a in lista1){
+    foreach(var b in lista1){
+        if(a==b){
+            compartenValor = true;
+            goto Salida; //Salta a la etiqueta salida
+        }
+    }
+}
+
+Salida: //Etiqueta
+```
