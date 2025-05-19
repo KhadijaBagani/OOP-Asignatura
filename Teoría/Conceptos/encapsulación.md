@@ -1,12 +1,11 @@
 # Encapsulación
 
-- [Encapsulación](#encapsulación)
-  - [¿Qué es?](#qué-es)
-  - [¿De qué nos sirve?](#de-qué-nos-sirve)
-  - [Encapsulación básica](#encapsulación-básica)
-  - [Propiedades (get/set)](#propiedades-getset)
-    - [Propiedades simples](#propiedades-simples)
-    - [Propiedades avanzadas](#propiedades-avanzadas)
+- [¿Qué es?](#qué-es)
+- [¿De qué nos sirve?](#de-qué-nos-sirve)
+- [Encapsulación básica](#encapsulación-básica)
+- [Propiedades (get/set)](#propiedades-getset)
+  - [Propiedades simples](#propiedades-simples)
+  - [Propiedades avanzadas](#propiedades-avanzadas)
 
 ## ¿Qué es?
 
