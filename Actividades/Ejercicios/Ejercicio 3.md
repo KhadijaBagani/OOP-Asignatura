@@ -31,3 +31,9 @@ Vamos a partir del entrenamiento de **Data Structures** para intentar hacer una 
    -   Devuelve la posición del elemento en la cola contando desde el inicio
    - Para **comparar** valores de **tipo genérico** usad `Object.Equals(value1, value2)`
   
+
+
+# Extras:
+
+1. Implementa una sobrecarga de `PushRange` con `params` para poder introducir los valores separados por comas:
+   - [Params keyword](https://www.c-sharpcorner.com/UploadFile/c63ec5/use-params-keyword-in-C-Sharp/)  
