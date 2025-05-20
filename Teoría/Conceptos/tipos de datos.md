@@ -6,10 +6,11 @@ Hay muchos **tipos** en C# y .NET como para mencionarlos todos. En su lugar, nos
   - [Tipos Primitivos](#tipos-primitivos)
   - [Tipos no Primitivos](#tipos-no-primitivos)
 - [Valor o Referencia](#valor-o-referencia)
-- [Individuales o Múltiples](#individuales-o-múltiples)
+- [Valores Múltiples](#valores-múltiples)
   - [Colecciones](#colecciones)
   - [Arrays](#arrays)
     - [Diferencias](#diferencias)
+  - [Tuplas](#tuplas)
 
 ## Primitivo o no Primitivo
 
@@ -28,13 +29,43 @@ Son todos los tipos fundamentales de C#. [Aquí](https://learn.microsoft.com/en-
 
 ## Valor o Referencia
 
-> [!warning]
-> Esta parte será expandida en el futuro
+No todos los tipos se almacenan igual. Cómo ya habeis visto, las clases se almacenan "por referencia", es decir, que un campo de tipo clase no almacena el contenido de una instancia, sino una referencia a ella.
+
+Esto es importante para entender cómo trabajamos con distintos tipos. Por ejemplo: no es lo mismo comparar si dos ints tienen el mismo valor, que comparar si dos clases lo tienen.
+
+```cs
+int a=1, b=1;
+
+Console.WriteLine(a == b); //True
+```
+
+```cs
+var c = new ValueNode<int>(1);
+var d = new ValueNode<int>(1);
+
+Console.WriteLine(c == d); //false
+Console.WriteLine(c.value == d.value); //true
+```
 
 
-## Individuales o Múltiples
+## Valores Múltiples
 
+Además de valores individuales, tenemos valores que son en realidad conjuntos de múltiples valores:
+ 
 ### Colecciones
+
+Las colecciones son objetos que contienen valores en una estructura concreta y que nos proporcionan distintos métodos para manipularlos fácilmente.
+
+.Net proporciona multitud de colecciones en el namespace `System.Collections.Generic`. Las más utilizadas son:
+
+- List
+- Stack
+- Queue
+- Dictionary
+- HashSet
+- PriorityList
+
+
 
 ### Arrays
 
@@ -70,3 +101,19 @@ int[,] arr3 = { { 1, 2, }, {3, 4}};
 
 #### Diferencias
 
+> [!warning]
+> Esta parte será expandida en el futuro
+
+
+### Tuplas
+
+Son una forma muy directa de almacenar varios valores en un mismo campo/variable. Al igual que los arrays, son muy fundamentales, de hecho, no son ni objetos, solo valores que se almacenan en grupo.
+
+Su gran diferencia con los arrays es que tienen un tamaño completamente predeterminado y que pueden mezclar elementos de varios tipos sin problemas.
+
+```cs
+(int, int) coordenadas = (5, 2);
+```
+
+> [!warning]
+> Esta parte será expandida en el futuro
