@@ -38,24 +38,80 @@ float Example(float a){} //No da error. Solo 1 param
 
 ## Parámetros
 
-## Tipos
+Son los valores que "pasamos" a las funciones desde el exterior para su ejecución. Simplemente transfiere
 
-### Métodos
-
+### Opcionales
 
 > [!warning]
 > Esta parte será expandida en el futuro
+
+### Modificadores
+
+#### Params
+
+#### Ref
+
+#### Out
+
+#### Otros modificadores
+
+> [!warning]
+> Esta parte será expandida en el futuro
+
+## Tipos de Funciones
+
+### Métodos
+
+Son el tipo de función más común. Se declaran **dentro de una clase** y solo pueden ser llamadas **desde una instancia** de la misma.
+
+```cs
+class Owner{
+
+    public void Method(){
+        // this es la instancia que llama al método
+    }
+}
+```
+
+```cs
+//Incorrecto
+Owner.Method(); //Da error
+//Correcto
+var owner = new Owner();
+owner.Method();
+```
  
 
 ### Métodos Estáticos
 
+En cambio, los métodos estáticos son globales a la clase. Pueden ser llamados desde una instancia pero no tienen acceso a `this`.
 
-### Funciones Anónimas
+
+```cs
+class Owner{
+
+    public static void Global(){
+        // this no existe
+    }
+}
+```
+
+```cs
+//Correcto
+Owner.Global();
+//Incorrecto
+var owner = new Owner();
+owner.Method(); //da error
+```
 
 
-### Otros
+### Tipos Avanzados
 
 > [!warning]
 > Esta parte será expandida en el futuro
+
+#### Funciones Anónimas
+
+#### Funciones Asíncronas
  
 

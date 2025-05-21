@@ -9,8 +9,9 @@ Hay muchos **tipos** en C# y .NET como para mencionarlos todos. En su lugar, nos
 - [Valores Múltiples](#valores-múltiples)
   - [Colecciones](#colecciones)
   - [Arrays](#arrays)
-    - [Diferencias](#diferencias)
   - [Tuplas](#tuplas)
+- [Records](#records)
+- [Estáticos o Dinámicos](#estáticos-o-dinámicos)
 
 ## Primitivo o no Primitivo
 
@@ -65,8 +66,6 @@ Las colecciones son objetos que contienen valores en una estructura concreta y q
 - HashSet
 - PriorityList
 
-
-
 ### Arrays
 
 A pesar de ser muy compatibles con las colecciones y hasta de ser posible usarlos casi como si fueran colecciones, los arrays no son colecciones, **no son ni objetos**.
@@ -79,10 +78,6 @@ int[,] matriz_3x4 = new int[3,4];
 int[][] arrayDeArrays = new int[3][];
 
 ```
-> [!warning]
-> Esta parte será expandida en el futuro
-> ACCEDER A VALORES CONCRETOS
-
 
 También se pueden inicializar directamente
 
@@ -96,24 +91,67 @@ int[] arr2 = [1, 2, 3];
 int[,] arr3 = { { 1, 2, }, {3, 4}};
 ```
 
-> [!warning]
-> Esta parte será expandida en el futuro
+Una vez inicializados, es posible acceder a valores concretos especificando el índice. Por defecto, se parte siempre desde el principio (índice 0), pero resulta posible especificar la posición desde el final o incluso rangos.
 
-#### Diferencias
+```cs
+var array = new int[] { 1, 2, 3, 4, 5 };
+int second = array[1]; //2
+int last = array[^1]; //5
+var middle = array[1..^1]; //2,3,4 (no incluye el último)
+```
 
-> [!warning]
-> Esta parte será expandida en el futuro
+Pero cuidado, salirse del rango del array siempre causa excepciones.
+
+```cs
+Console.WriteLine(array[-1]); //Error
+Console.WriteLine(array[1000]); //Error
+```
+
+Podemos usar los arrays como colecciones, pero al hacerlo prácticamente perdemos todos los beneficios de usar arrays. Así que en general intentad usar Listas a no ser que necesiteis la eficiencia extra o las estructuras multidimensionales.
 
 
 ### Tuplas
 
 Son una forma muy directa de almacenar varios valores en un mismo campo/variable. Al igual que los arrays, son muy fundamentales, de hecho, no son ni objetos, solo valores que se almacenan en grupo.
 
-Su gran diferencia con los arrays es que tienen un tamaño completamente predeterminado y que pueden mezclar elementos de varios tipos sin problemas.
+Su gran diferencia con los arrays es que tienen un tamaño completamente predeterminado y que pueden mezclar elementos de varios tipos sin problemas. Además, [no son tipos de referencia](#valor-o-referencia)!
 
 ```cs
 (int, int) coordenadas = (5, 2);
 ```
 
+Se suelen utilizar para devolver mútiples valores a la vez sin necesidad de crear una clase o `struct` exclusivamente para eso.
+
+```cs
+public (string, string?, string) GetFullName() {
+    return (first, middle, last);
+}
+
+public (string, int) GetNameAndAge() {
+    return (first, age);
+}
+```
+
+Estos valores múltiples luego pueden ser "deconstruidos" (separados) en distintas variables
+
+```cs
+// "_" indica que ese valor de la tupla se descarta
+var (name, _, lastName) = person.GetFullName();
+```
+
+## Records
+
+Son una forma de declarar objetos inmutables. Son **bastante avanzados** y no los veremos de momento.
+
 > [!warning]
 > Esta parte será expandida en el futuro
+
+
+
+## Estáticos o Dinámicos
+
+Al ser fuertemente tipado, todos los tipos de C# son **estáticos**, es decir, que los campos y variables son de un tipo predefinido que no cambia durante la ejecución.
+
+El tipo `dynamic` parece ser la excepción a esta regla, pero en realidad no lo es. Es simplemente un tipo `object` (acepta cualquier otro tipo) pero que omite comprobaciones del compilador y da por hecho que es compatible con lo que sea que hagamos.
+
+Esto puede ser muy útil en algunos casos, pero en la mayoría es innecesariamente peligroso.
