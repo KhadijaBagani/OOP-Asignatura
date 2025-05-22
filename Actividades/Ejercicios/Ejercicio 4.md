@@ -34,5 +34,20 @@ string[] letters = "abcdefghijklmnñopqrtuvwxyz"
    -  **No vale usar un for normal**
 
 2. **Recorrer Desde Fuera:** ahora queremos hacer un `for` que recorra los valores desde "fuera" hacia "adentro". Es decir, que muestre "a", luego "z", luego "b", "y"...
+   - Ha de poder funcionar con colecciones de cualquier tamaño
 
-3. 
+
+## Generar Colecciones
+
+Y ya puestos, vamos a generar unas pocas colecciones:
+
+1. Queremos un método `FibonacciArray` que acepte `size` y genere un array de ese tamaño con la sucesión de fibonacci.
+2. Añade una sobrecarga al método anterior 
+3. Queremos un método `PowersOfTwo` que acepte un valor `limit` y devuelva un array con todas las potencias de 2 **menores** que ese límite.
+
+
+## EXTRA: Control de Errores
+
+Añadid control de errores a todos los métodos.
+   - Intentad devolver `null` o algún valor por defecto en vez de lanzar una excepción
+   - Considerad todos los inputs posibles, no solo los "razonables"
