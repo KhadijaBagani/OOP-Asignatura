@@ -180,8 +180,33 @@ owner.Global(); //da error
 > [!warning]
 > Esta parte será expandida en el futuro
 
-<!-- #### Funciones Anónimas
+#### Funciones Anónimas
 
-#### Funciones Asíncronas -->
+Las funciones anónimas o **lambdas** son funciones que carecen de nombre. Pueden tomar muchas formas, pero todas se caracterizan por el uso de la "flechita" `=>`.
+
+Todas estas lambdas son distintas formas de escribir lo mismo:
+
+```cs
+x => x*x;
+(x) => x*x;
+x => { return x * x; };
+(x) => { return x * x; };
+```
+
+Las lambdas son especiales porque son funciones pero **no métodos**. No pertenecen a ninguna clase. Son locales al ámbito en el que han sido declaradas.
+
+Por eso no tienen nombre: no tiene sentido que tengan nombre ya que no pueden ser llamadas por él. Son casi más parecidas a valores concretos que a métodos. De hecho, las podemos guardar en variables.
+
+```cs
+Func<int,int> lambda = x => x*x;
+lambda(2); //Puedes llamar a la función desde la variable
+
+//O enviarla cómo parámetro
+new[] { 10, 20, 30 }.Select(lambda); //Ejecuta lambda con cada número
+```
+
+Las lambdas nos permiten tratar secuencias de acciones u operaciones como si fueran valores.
+
+<!-- #### Funciones Asíncronas -->
  
 
