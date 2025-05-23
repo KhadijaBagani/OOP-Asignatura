@@ -171,7 +171,7 @@ class Owner{
 Owner.Global();
 //Incorrecto
 var owner = new Owner();
-owner.Method(); //da error
+owner.Global(); //da error
 ```
 
 
