@@ -182,7 +182,7 @@ owner.Global(); //da error
 
 #### Funciones Anónimas
 
-Las funciones anónimas o **lambdas** son funciones que carecen de nombre. Pueden tomar muchas formas, pero todas se caracterizan por el uso de la "flechita" `=>`.
+Las funciones anónimas o **funciones lambda** son funciones que carecen de nombre. Pueden tomar muchas formas, pero todas se caracterizan por el uso de la "flechita" `=>`.
 
 Todas estas lambdas son distintas formas de escribir lo mismo:
 
@@ -206,6 +206,9 @@ new[] { 10, 20, 30 }.Select(lambda); //Ejecuta lambda con cada número
 ```
 
 Las lambdas nos permiten tratar secuencias de acciones u operaciones como si fueran valores.
+
+> [!warning]
+> Métodos y propiedades pueden usar "expresiones lambda" para describir su implementación, pero **no son funciones anónimas**. Comprobad siempre si hay un nombre y el tipo de la expresión para poder diferenciarlos.
 
 <!-- #### Funciones Asíncronas -->
  
