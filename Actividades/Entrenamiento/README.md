@@ -7,3 +7,4 @@
 5. [Genéricos](5.%20Generics.md)
 6. [Data Structures](6.%20Data%20Structures.md)
 7. [Bucles](7.%20Bucles.md)
+8. [Linq](8.%20Linq.md)
