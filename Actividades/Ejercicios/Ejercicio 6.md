@@ -12,6 +12,17 @@ Queremos simplificar nuestro juego usando lambdas. Ya hemos visto el engorro que
    - Recuerda permitir seleccionar el tamaño.
 
 
+## Pool de Recompensas
+
+Queremos poder configurar recompensas para dar al jugador cuando hace ciertas cosas (completar una misión, abrir un cofre, matar a un enemigo) pero no queremos que esta sea exactamente la misma. Nos gustaría crear un sistema que nos permita definir recompensas aleatorias para nuestro juego.
+
+1. Define la clase `Reward`. Ha de cumplir las siguientes características:
+   - Ha de almacenar el conjunto de items que se pueden recibir como recompensa junto con la probabilidad de que te toque cada uno.
+   - Almacena ambos como quieras, simplemente garantiza que sea eficiente.
+   - El conjunto no ha de ser modificable después de ser creado
+   - Reward ha de tener un método `GetReward` que te permita obtener la recompensa que te ha tocado. Y otro llamado `GetChances` que te permite ver acceder a los items y sus probabilidades pero no modificarlos. ***Déjalos vacíos de momento*** (pon un `throw new NotImplementedException();`)
+
+2. Implementa `GetChances`
 
 
 > [!warning]
