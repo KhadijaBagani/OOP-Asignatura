@@ -35,6 +35,3 @@ Queremos poder configurar recompensas para dar al jugador cuando hace ciertas co
 4. Implementa completamente `GetReward` de manera que tenga en cuenta distintas probabilidades de que toque un item u otro.
    - Preguntad si no se os ocurre cómo hacerlo, daré pistas.
 
-
-> [!warning]
-> Esta parte será expandida en el futuro
