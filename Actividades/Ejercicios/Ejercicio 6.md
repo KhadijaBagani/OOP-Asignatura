@@ -19,11 +19,19 @@ Queremos poder configurar recompensas para dar al jugador cuando hace ciertas co
 1. Define la clase `Reward`. Ha de cumplir las siguientes características:
    - Ha de almacenar el conjunto de items que se pueden recibir como recompensa junto con la probabilidad de que te toque cada uno.
    - Almacena ambos como quieras, simplemente garantiza que sea eficiente.
-   - El conjunto no ha de ser modificable después de ser creado
-   - Reward ha de tener un método `GetReward` que te permita obtener la recompensa que te ha tocado. Y otro llamado `GetChances` que te permite ver acceder a los items y sus probabilidades pero no modificarlos. ***Déjalos vacíos de momento*** (pon un `throw new NotImplementedException();`)
+   - El conjunto **NO ha de ser modificable** después de ser creado
+   - Reward ha de tener tres métodos: `GetReward`, `GetChances` y `GetItemChance` ***Déjalos vacíos de momento*** (pon un `throw new NotImplementedException();`)
+     - `GetReward` que te permite obtener la recompensa que te ha tocado y solo da premio la primera vez.
+     - `GetChances` te permite ver acceder a los items y sus probabilidades pero no modificarlos. 
+     - `GetItemChances` Comprueba si un item concreto se encuentra en la lista de posibles premios y devuelve la probabilidad de ganarlo como un porcentaje (de 0 a 1).
 
-2. Implementa `GetChances`
+2. Implementa `GetChances`.
 
+3. Implementa **PARCIALMENTE** `GetReward`, basta con que escoja un item al azar ignorando la probabilidad.
+   - Usad `Random` para escoger. [Aquí teneis un ejemplo](https://daniccardenas.com/crear-numeros-aleatorios-con-c-sharp/)
+   - Aseguraos de que da valores distintos cada vez.
+   - Vigilad que no pueda dar error.
 
-> [!warning]
-> Esta parte será expandida en el futuro
+4. Implementa completamente `GetReward` de manera que tenga en cuenta distintas probabilidades de que toque un item u otro.
+   - Preguntad si no se os ocurre cómo hacerlo, daré pistas.
+
