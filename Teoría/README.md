@@ -9,6 +9,7 @@
 
 - [*Por*qué es OOP](Why%20is%20OOP.pptx)
 - [Cómo es OOP](How%20is%20OOP.pptx)
+- [Pautas para programar](Pautas%20Programar.pptx)
 
 ## Otros
 
