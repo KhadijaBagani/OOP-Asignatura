@@ -3,6 +3,7 @@
 Aquí teneis recursos útiles de programación.
 
 - https://refactoring.guru/design-patterns: Podeis ver distintos patrones de diseño de código explicados y detallados
+- [Principios de OOP con ejemplos en C#](https://learn.microsoft.com/es-es/dotnet/csharp/fundamentals/tutorials/oop)# Utils
 - [Principios SOLID](https://www.freecodecamp.org/espanol/news/los-principios-solid-explicados-en-espanol/) (IMPORTANTE)
 - Anti-Patrones de diseño (cosas que no hacer)
   - [5 Anti-patrones comunes](https://www.lavozdegalicia.es/noticia/reto-digital/ocio/2021/08/24/cinco-antipatrones-software-puedes-encontrar-vida-diaria/00031629834405250424670.htm)
