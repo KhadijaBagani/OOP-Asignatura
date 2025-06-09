@@ -7,7 +7,7 @@ Vamos a expandir la funcionalidad de los items haciendo que estos se guardar en 
 
 ## Parte 1: PlayerInventory (4 puntos)
 
-En primer lugar, empezaremos con el inventario de los jugadores, para el cual os he dejado una plantilla. La idea es que proporcione todas las funcionalidades de gestión de items que necesita el jugador de forma normal.
+En primer lugar, empezaremos con el inventario de los jugadores, para el cual os he dejado una [plantilla](https://github.com/Vera-Profe/Evaluable-2). La idea es que proporcione todas las funcionalidades de gestión de items que necesita el jugador de forma normal.
 
 ### 1.1 Lógica básica (2 Puntos)
 
